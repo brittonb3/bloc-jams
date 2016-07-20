@@ -29,6 +29,22 @@ var albumPicasso = {
      ]
  };
 
+// My Example Album
+ var albumKygo = {
+     title: 'Cloud 9',
+     artist: 'Kygo',
+     label: 'EDM',
+     year: '2016',
+     albumArtUrl: 'assets/images/album_covers/19.png',
+     songs: [
+         { title: 'Firestone', duration: '3:14' },
+         { title: 'Carry Me', duration: '4:03' },
+         { title: 'Oasis', duration: '3:21'},
+         { title: 'Serious', duration: '3:45' },
+         { title: 'Stay', duration: '2:15'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -40,6 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
+
+    var albumTitle = document.getElementsByClassName('album-view-title')[0];
+     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+     var albumImage = document.getElementsByClassName('album-cover-art')[0];
+     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
  var setCurrentAlbum = function(album) {
      // #1
@@ -66,4 +88,15 @@ var createSongRow = function(songNumber, songName, songLength) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     var newAlbum = [albumMarconi, albumKygo, albumPicasso];
+     var index = 0;
+     
+     albumImage.addEventListener('click', function(event) {
+         setCurrentAlbum(newAlbum[index]);
+         index ++;
+         
+         if (index >= newAlbum.length) {
+            index = 0;
+         }
+     })
  };
